@@ -60,6 +60,8 @@ movies %>%
 
 ### Your turn
 
+### Question One:
+
 Now, you try it! 
 
 - What year was the earliest movie in the dataset released? 
@@ -68,10 +70,13 @@ Now, you try it!
 
 You may want to look at the "data transformation with dplyr" cheatsheet to review some possible summary functions. 
 
-```{r eval=FALSE}
-movies %>%
-  summarize(# fill in some commands here!)
+```{r eval=TRUE}
+movies_lin71<-movies %>%
+  summarize(mean(length), sd(length), min(year))
+movies_lin71
 ```
+
+The average length of the movies in the data set is about 82 minutes and 34 seconds. The standard deviation was of about 44 minutes and about 35 seconds. The oldest movies on this list were made in 1893.
 
 ## group_by
 
@@ -127,7 +132,7 @@ The variables `r1`, `r2`, ..., `r10` give you the percent of people who rated th
 
 ```{r eval=FALSE}
 movies <- movies %>%
-  mutate(per_low = # fill in some commands here!)
+  mutate(per_low = r1,r2,r3,r4)
 ```
 
 ## Putting it together
