@@ -143,7 +143,7 @@ Let's read this code carefully.
 
 The variables `r1`, `r2`, ..., `r10` give you the percent of people who rated that movie a 1, 2, ..., 10. We would like to know the percent of people who rated the movie a 4 or less (i.e., who rated it a 1, 2, 3, or 4). Create a new variable called `per_low` that computes that number.
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 movies_lin128 <- movies %>%
 mutate(per_low = r1+r2+r3+r4)
 movies_lin128
@@ -172,8 +172,35 @@ movies_lin144
 4753 movies have a high percent of low ratings with a vote greater than 5.
 
 
+### Final Question:
+
 - what is the average length of movies in the dataset, in hours? 
 - can you find a second way to compute the average length, by flipping the order of commands (i.e., `summarize` first and then `mutate`)?
 
+```{r}
+movies_SdQ<- movies_lin128 %>%
+filter(per_low > 50 & votes > 5)%>%
+mutate(length_hrs = length / 60) %>%
+summarize(mean (length_hrs))
+movies_SdQ
+```
+
+The movies with a low rating and votes greater than 5 have an average length in hours of about 1.5.
 
 
+```{r}
+average_length_hours <- movies %>%
+summarize(average_length = mean (length)) %>%
+mutate(average_length_hours_summarize = average_length / 60)
+
+average_length_hours_flipped <- movies %>%
+mutate(length_hours = length / 60) %>%
+summarize(average_length_hours_mutate = mean (length_hours ))
+
+average_length_hours
+average_length_hours_flipped
+
+```
+
+
+When flipping both data sets of mutate and summarize we were able to be done as seen by the new data sets of average_length_hours and average_length_hours_flipped. Using mutate first leads to a more straight forward answer as it gives us the average length in hours right away when we need it, using summarize first then mutate shows the process that lead to the data which has its uses for tracking progression.
