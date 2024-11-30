@@ -88,16 +88,19 @@ This is useful if want to compute summary statistics by group. For example, we m
 
 We already know how to compute the average length of movies overall. What we need to add to our pipeline is a `group_by`
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 movies_lin84<-movies %>%
   group_by(Action) %>%
   summarize(mean(length), sd(length), min(year))
 movies_lin84
 ```
 
-The data shows that action movies are often longer with run times of about 100 minutes compared to non-action movies having run times of about 81 minutes. The standard deviation also shows the difference between the two as it is lower, with the Action movies earning more. 
 
 Which movies are longer, action movies or non-action movies? 
+
+The data shows that action movies are often longer with run times of about 100 minutes compared to non-action movies having run times of about 81 minutes. The standard deviation also shows the difference between the two as it is lower, with the Action movies earning more. 
+
+### Question 3:
 
 ### Your turn
 
@@ -106,11 +109,14 @@ Investigate the movies classified as Short. Are they actually shorter than other
 - What is the average length? 
 - What is the minimum length?
 
-```{r eval=FALSE}
-movies %>%
-  group_by(# fill in some commands here!) %>%
-  summarize(# fill in some commands here!)
+```{r eval=TRUE}
+movies_lin99<-movies %>%
+group_by(Short) %>%
+summarize(mean(length), min(length))
+movies_lin99
 ```
+
+Our data states that the short movies have an average length of about 14 minutes, while non-short movies have an average length of about 95 minutes. Interestingly enough, Short and non-short movies have the same lowest run time for lowest length of a movie, both being 1 minute as the minimum length of a movie.
 
 
 ## mutate
